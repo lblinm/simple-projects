@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expanding Cards</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="m-0 text-white">
+  <div id="panels" class="h-screen flex gap-2 p-5">
+    <div
+      class="panel flex-grow rounded-xl cursor-pointer relative transition-all duration-500 ease-in-out overflow-hidden bg-[url('https://cdn.pixabay.com/photo/2020/04/07/08/09/snow-mountain-5012482_1280.jpg')] bg-cover bg-center">
+      <h3 class="absolute bottom-4 left-4 text-2xl font-bold">山川</h3>
+    </div>
+    <!-- 
+    1. pannel: 标始该元素，便于js操作
+    2. flex-grow: grow为flex值的第一个维度(余下为shrink basis)，flex-grow为子项尽可能拉伸以填充空间
+    3. relative: 设置元素为相对定位，使文字可以使用绝对定位
+    4. transition-all: 启用元素所有属性（如颜色、大小、位置等）的过渡动画
+    5. duration-500: 置过渡动画的 持续时间 为 500ms（即半秒钟）
+    6. ease-in-out: 过渡时的动画曲线，表示动画从慢到快，再从快到慢的效果
+    7. overflow-hidden: 让该元素的 溢出内容不可见，保证了元素的内容（背景图片）不会超出其边界
+    8. bg-[url(...)]: 为元素设置一个背景图
+    9. bg-cover: 设置背景图的 填充模式，让背景图完全覆盖元素的背景区域，可能会裁剪掉一部分图片
+    10. bg-center: 将背景图像设置为 居中显示
+     -->
+    <div
+      class="panel flex-grow rounded-xl cursor-pointer relative transition-all duration-500 ease-in-out overflow-hidden bg-[url('https://cdn.pixabay.com/photo/2021/12/16/15/26/forest-6874717_1280.jpg')] bg-cover bg-center">
+      <h3 class="absolute bottom-4 left-4 text-2xl font-bold">森林</h3>
+    </div>
+    <div
+      class="panel flex-grow rounded-xl cursor-pointer relative transition-all duration-500 ease-in-out overflow-hidden bg-[url('https://cdn.pixabay.com/photo/2016/12/18/22/32/desert-1916882_1280.jpg')] bg-cover bg-center">
+      <h3 class="absolute bottom-4 left-4 text-2xl font-bold">沙漠</h3>
+    </div>
+    <div
+      class="panel flex-grow rounded-xl cursor-pointer relative transition-all duration-500 ease-in-out overflow-hidden bg-[url('https://cdn.pixabay.com/photo/2022/04/03/22/05/buildings-7109918_1280.jpg')] bg-cover bg-center">
+      <h3 class="absolute bottom-4 left-4 text-2xl font-bold">城市</h3>
+    </div>
+    <div
+      class="panel flex-grow rounded-xl cursor-pointer relative transition-all duration-500 ease-in-out overflow-hidden bg-[url('https://cdn.pixabay.com/photo/2021/09/24/02/48/sea-6651168_1280.jpg')] bg-cover bg-center">
+      <h3 class="absolute bottom-4 left-4 text-2xl font-bold">海洋</h3>
+    </div>
+  </div>
+
+  <script>
+    const panels = document.querySelectorAll('.panel')
+
+    panels.forEach((panel) => {
+      panel.addEventListener('click', () => {
+        panels.forEach((p) => p.classList.remove('flex-grow-[5]'))
+        panel.classList.add('flex-grow-[5]')
+      })
+    });
+  </script>
+</body>
+
+</html>
