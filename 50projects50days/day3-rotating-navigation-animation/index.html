@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rotating Navigation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+  <style>
+    .nav-item {
+      transition: transform 0.4s ease-in;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-800 text-gray-800 overflow-x-hidden m-0 font-sans">
+  <div class="bg-white origin-top-left transition-transform duration-500 w-screen min-h-screen p-12" id="container">
+    <div class="fixed -top-24 -left-24 transform origin-top-left">
+      <div class="bg-red-400 h-48 w-48 rounded-full relative transition-transform duration-500 ease-linear" id="circle">
+        <button id="close"
+          class="cursor-pointer absolute top-[70%] left-[30%] h-24 bg-transparent border-0 text-2xl text-white focus:outline-none"
+          style="transform: rotate(90deg) translate(-50%, -50%); transform-origin: top left;">
+          <i class="fas fa-times"></i>
+        </button>
+        <button id="open"
+          class="cursor-pointer absolute top-[70%] left-[70%] h-24 bg-transparent border-0 text-2xl text-white focus:outline-none"
+          style="transform: translate(-50%, -50%);">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="max-w-4xl my-12 mx-auto">
+      <h1 class="m-0 text-4xl font-bold">Amazing Article</h1>
+      <small class="text-gray-600 italic">Florin Pop</small>
+      <p class="text-gray-800 leading-relaxed mt-5">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium quia in ratione dolores cupiditate, maxime
+        aliquid impedit dolorem nam dolor omnis atque fuga labore modi veritatis porro laborum minus, illo, maiores
+        recusandae cumque ipsa quos. Tenetur, consequuntur mollitia labore pariatur sunt quia harum aut. Eum maxime
+        dolorem provident natus veritatis molestiae cumque quod voluptates ab non, tempore cupiditate? Voluptatem,
+        molestias culpa. Corrupti, laudantium iure aliquam rerum sint nam quas dolor dignissimos in error placeat quae
+        temporibus minus optio eum soluta cupiditate! Cupiditate saepe voluptates laudantium. Ducimus consequuntur
+        perferendis consequatur nobis exercitationem molestias fugiat commodi omnis. Asperiores quia tenetur nemo ipsa.
+      </p>
+
+      <h3 class="my-5 text-2xl font-bold">My Dog</h3>
+      <img
+        src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80"
+        alt="doggy" class="max-w-full">
+      <p class="text-gray-800 leading-relaxed mt-5">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit libero deleniti rerum quo, incidunt vel
+        consequatur culpa ullam. Magnam facere earum unde harum. Ea culpa veritatis magnam at aliquid. Perferendis totam
+        placeat molestias illo laudantium? Minus id minima doloribus dolorum fugit deserunt qui vero voluptas, ut quia
+        cum amet temporibus veniam ad ea ab perspiciatis, enim accusamus asperiores explicabo provident. Voluptates
+        sint, neque fuga cum illum, tempore autem maxime similique laborum odio, magnam esse. Aperiam?
+      </p>
+    </div>
+  </div>
+
+  <nav class="fixed bottom-10 left-0 z-50">
+    <ul class="list-none pl-8">
+      <li class="uppercase text-white my-10 -translate-x-full nav-item" style="transition-delay: 0.1s">
+        <i class="fas fa-home text-xl mr-2"></i>
+        <a href="#" class="text-white no-underline hover:text-red-400 hover:font-bold">Home</a>
+      </li>
+      <li class="uppercase text-white my-10 -translate-x-[150%] nav-item ml-4" style="transition-delay: 0.2s">
+        <i class="fas fa-user-alt text-xl mr-2"></i>
+        <a href="#" class="text-white no-underline hover:text-red-400 hover:font-bold">About</a>
+      </li>
+      <li class="uppercase text-white my-10 -translate-x-[200%] nav-item ml-8" style="transition-delay: 0.3s">
+        <i class="fas fa-envelope text-xl mr-2"></i>
+        <a href="#" class="text-white no-underline hover:text-red-400 hover:font-bold">Contact</a>
+      </li>
+    </ul>
+  </nav>
+
+  <script>
+    const open = document.getElementById('open')
+    const close = document.getElementById('close')
+    const container = document.getElementById('container')
+    const circle = document.getElementById('circle')
+
+    open.addEventListener('click', () => {
+      container.classList.add('rotate-[-20deg]')
+      circle.classList.add('rotate-[-70deg]')
+      document.querySelectorAll('.nav-item').forEach((item, index) => {
+        item.classList.remove(`-translate-x-${index === 0 ? 'full' : index === 1 ? '[150%]' : '[200%]'}`)
+      })
+    })
+
+    close.addEventListener('click', () => {
+      container.classList.remove('rotate-[-20deg]')
+      circle.classList.remove('rotate-[-70deg]')
+      document.querySelectorAll('.nav-item').forEach((item, index) => {
+        item.classList.add(`-translate-x-${index === 0 ? 'full' : index === 1 ? '[150%]' : '[200%]'}`)
+      })
+    })
+  </script>
+</body>
+
+</html>
